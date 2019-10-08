@@ -1,0 +1,326 @@
+public class Fibonacci{
+    
+    public static String fibonacci( int n ){
+               
+        String toprint = "0,1";
+       
+        if (n == 1) {
+            return "0";
+        } else if (n == 2) {
+            return "0,1";
+        } else {
+            int prevprevnum = 0;
+            int prevnum = 1;
+            int currentnum = 0;
+            for (int i = 0; i < n - 2; i++) {
+                currentnum = prevnum + prevprevnum;
+                toprint +=  "," + currentnum;
+                prevprevnum = prevnum;
+                prevnum = currentnum;
+            }
+            return toprint;      
+        }
+    }
+}
+
+
+
+
+
+
+
+
+import java.util.Date;
+import java.util.*;
+
+
+public class Account {
+    
+    private static int id=0;
+    private static double balance =0;
+    
+    private static double annualInterestRate=0;
+    private static double monthlyInterestRate=0;
+    private Date dateCreated;
+    
+    Account(){
+        this.dateCreated = new Date();
+    }
+    
+    Account(int id, double balance){
+        this.id = id;
+        this.balance = balance;
+        this.dateCreated = new Date();
+    }
+    
+    
+    public int getId() {
+        return this.id;
+    }
+    public double getBalance() {
+        return this.balance;
+    }
+    public double getAnnualInterestRate() {
+        return annualInterestRate;
+    }
+    public Date getDateCreated() {
+        return this.dateCreated;
+    }
+    
+    public void setId(int id) {
+        this.id = id;
+    }
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+    public static void setAnnualInterestRate(double toSetannualInterestRate) {
+        annualInterestRate = toSetannualInterestRate;
+    }
+    
+    
+    
+    public  double getMonthlyInterestRate() {
+        monthlyInterestRate = annualInterestRate/1200.0;
+        return monthlyInterestRate;
+    }
+    public  double getMonthlyInterest() {
+        monthlyInterestRate = annualInterestRate/1200.0;
+        //System.out.println(monthlyInterestRate);
+        return (monthlyInterestRate * balance);
+        
+    }
+
+    
+    public void withdraw(double hh) {
+        this.balance -= hh;
+    }
+    public void deposit(double hh) {
+        this.balance += hh;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+public class PrimeNumberChecker{
+	public static int isPrime(int num){        
+        for (int i = 2; i<num; i++) {
+            if (num%i==0) {
+                return 0;
+            }           
+        }
+        return 1;
+	}
+}
+
+
+
+
+
+
+
+public class MyRectangle2D {
+    
+    private double x;
+    private double y;
+    
+    public double getX() { return x;}
+    public double getY() { return y;}
+    public void setX(double newX) { x = newX;}
+    public void setY(double newY) { y = newY;}
+    
+    private double width;
+    private double height;    
+    public double getWidth() { return width;}
+    public double getHeight() { return height;}
+    public void setWidth(double neww) { x = neww;}
+    public void setHeight(double newh) { y = newh;}
+    
+    
+    MyRectangle2D() {
+        x=0;
+        y=0;
+        width=1.0;
+        height=1.0;
+    }
+    
+    MyRectangle2D(double q1, double q2, double q3, double q4) {
+        x=q1;
+        y=q2;
+        width=q3;
+        height=q4;
+    }
+    
+    public double getArea(){ return width*height;}
+    public double getPerimeter(){ return width+height+width+height;}
+    public boolean  contains(double x, double y) {
+        if (  (this.x-(width/2.0)<=x && this.x+(width/2.0)>=x)&&(this.y-(height/2.0)<=y && this.y+(height/2.0)>=y) ){
+            return true;
+        }
+        return false;
+    }
+    public boolean contains(MyRectangle2D r) {
+        if (!contains(r.getX(), r.getY())) { return false;}
+        
+        
+        
+        if ((((this.x-(width/2.0))<=(r.getX()-(r.getWidth()/2.0)))&&((this.x+(width/2.0))>=(r.getX()+(r.getWidth()/2.0))))&&(((this.y-(height/2.0))<=(r.getY()-(r.getHeight()/2.0)))&&((this.y+(height/2.0))>=(r.getY()+(r.getHeight()/2.0))))){
+            return true;    
+        }                                
+        return false;           
+    }
+    
+    public boolean overlaps(MyRectangle2D r) {
+        
+        if ((((this.x-(width/2.0))<=(r.getX()+(r.getWidth()/2.0)))||((this.x+(width/2.0))>=(r.getX()-(r.getWidth()/2.0))))&&(((this.y-(height/2.0))<=(r.getY()+(r.getHeight()/2.0)))||((this.y+(height/2.0))>=(r.getY()-(r.getHeight()/2.0))))) {
+            return true;}
+        return false;
+        
+
+    }
+
+}
+
+
+
+
+
+
+
+
+
+public class CheckingAccount extends Account{
+    
+    public double overdraftLimit;
+    
+    public CheckingAccount() {
+        super();  
+        this.overdraftLimit = -5000.0;
+    }
+    
+    public CheckingAccount(int id, double balance) {
+        super(id, balance);  
+        this.overdraftLimit = -5000.0;
+    }
+    
+    public void withdraw(double hh) {        
+        
+        if (getBalance() - hh<this.overdraftLimit) {
+            System.out.println("over limit");
+        } else {
+            setBalance(getBalance() - hh);
+        }
+    }
+     
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+class Triangle extends GeometricObject {
+    
+    public double side1 = 1.0;
+    public double side2 = 1.0;
+    public double side3 = 1.0;
+    
+    Triangle() {
+    }
+    Triangle(double s1,double s2,double s3) {
+        side1=s1;
+        side2=s2;
+        side3=s3;
+    }
+    
+    public double getArea(){
+        double peri = side1+side2+side3;
+        peri /= 2;
+        return Math.pow( peri*(peri-side1)*(peri-side2)*(peri-side3),0.5);        
+    }
+    
+    public double getPerimeter(){
+        return side1+side2+side3;
+    }
+    
+    public String toString() {
+        String nn = new String("Triangle: side1 = " +  this.side1 + " side2 = " + this.side2 + " side3 = " + this.side3);
+        return nn;
+    }
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+public class Pset1 {	
+	public static boolean isAllCharacterUnique(String sIn) {
+	  //todo: add your implementation		
+        char[] ee = sIn.toCharArray();
+        
+        for(int i=0; i<sIn.length();i++) {
+            
+            for(int j=0; j<sIn.length();j++) {
+                if (i==j) {
+                    int y =0;
+                } else {
+                    if (ee[i] == ee[j]) {
+                        return false;
+                    }
+                }
+            }           
+        }
+        return true;
+        
+        
+        
+	}
+	public static boolean isPermutation(String sIn1, String sIn2) {
+	  //todo: add your implementation		
+        if (sIn1.length() != sIn2.length()){
+            return false;
+        }
+        
+        char[] a1 = sIn1.toCharArray();
+        char[] a2 = sIn2.toCharArray();
+                      
+        int count=0;        
+        for(int i=0; i<sIn1.length();i++) {
+            count=0;           
+            for(int j=0; j<sIn2.length();j++) {
+                if (a1[i] == a2[j]) {
+                    count++;
+                }
+            }
+            if (count != 1) {
+                return false;
+            }
+        }       
+        return true;
+	}
+}
